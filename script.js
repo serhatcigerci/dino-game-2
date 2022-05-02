@@ -1,9 +1,11 @@
-import { updateGround } from './ground.js'
+import { updateGround, updateGround } from './ground.js'
 
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 30
 
 const worldElem = document.querySelector('[data-world]')
+
+setupGround()
 
 let lastTime
 function update(time) {
@@ -13,7 +15,7 @@ function update(time) {
     return
   }
   const delta = time - lastTime
-  updateGround(delta)
+  updateGround(delta, 1)
   lastTime = time
   window.requestAnimationFrame(update)
 }
