@@ -1,11 +1,10 @@
-import { updateGround, updateGround } from './ground.js'
+import { updateGround, setupGround } from './ground.js'
 
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 30
 
 const worldElem = document.querySelector('[data-world]')
 
-setupGround()
 
 let lastTime
 function update(time) {
@@ -20,7 +19,11 @@ function update(time) {
   window.requestAnimationFrame(update)
 }
 
-window.requestAnimationFrame(update)
+function handleStart() {
+  lastTime = null
+  setupGround()
+  window.requestAnimationFrame(update)
+}
 
 function pixelWorldScale() {
   let worldScale
@@ -37,3 +40,4 @@ function pixelWorldScale() {
 
 pixelWorldScale()
 window.addEventListener('resize', pixelWorldScale)
+document.addEventListener('keydown', handleStart, { once: true })
