@@ -1,5 +1,6 @@
 import { updateGround, setupGround } from './ground.js'
 import { updateDino, setupDino } from './dino.js'
+import { updateCactus, setupCactus } from './cactus.js'
 
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 30
@@ -28,6 +29,8 @@ function update(time) {
 
   updateDino(delta, speedScale)
 
+  updateCactus(delta, speedScale)
+
   lastTime = time
   window.requestAnimationFrame(update)
 }
@@ -36,10 +39,11 @@ function handleStart() {
   score = 0
   lastTime = null
   speedScale = 1
-  setupGround()
   startScreenElem.classList.add("hide")
   window.requestAnimationFrame(update)
+  setupGround()
   setupDino()
+  setupCactus()
 }
 
 function updateScore(delta) {
