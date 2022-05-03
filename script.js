@@ -5,10 +5,13 @@ const WORLD_HEIGHT = 30
 const SPEED_SCALE_INCREASE = 0.00001
 
 const worldElem = document.querySelector('[data-world]')
+const scoreElem = document.querySelector('[data-score]')
+const startScreenElem = document.querySelector('[data-start-screen]')
 
 let speedScale
 let lastTime
-let updateScore
+let score
+
 function update(time) {
   if (lastTime == null) {
     lastTime = time
@@ -31,7 +34,13 @@ function handleStart() {
   lastTime = null
   speedScale = 1
   setupGround()
+  startScreenElem.classList.add("hide")
   window.requestAnimationFrame(update)
+}
+
+function updateScore(delta) {
+  score += delta * 0.01
+  scoreElem.textContent = Math.floor(score)
 }
 
 function updateSpeedScale(delta) {
